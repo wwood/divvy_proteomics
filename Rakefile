@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "divvy_proteomics"
   gem.homepage = "http://github.com/wwood/divvy_proteomics"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{divvy up spectra from DTASelect files in a parsimonious way}
+  gem.description = %Q{divvy up spectra from DTASelect files in a somewhat parsimonious way}
   gem.email = "donttrustben@gmail.com"
   gem.authors = ["Ben J Woodcroft"]
   # dependencies defined in Gemfile
