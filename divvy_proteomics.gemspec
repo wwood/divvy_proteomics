@@ -10,22 +10,23 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben J Woodcroft"]
   s.date = "2013-04-13"
-  s.description = "TODO: longer description of your gem"
+  s.description = "divvy up spectra from DTASelect files in a somewhat parsimonious way"
   s.email = "donttrustben@gmail.com"
   s.executables = ["divvy_spectra"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".document",
     ".rspec",
     "Gemfile",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
     "bin/divvy_spectra",
+    "divvy_proteomics.gemspec",
     "lib/divvy_proteomics.rb",
     "spec/data/merge_definition.csv",
     "spec/data/multiply_mapped_spectra.csv",
@@ -41,7 +42,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.24"
-  s.summary = "TODO: one-line summary of your gem"
+  s.summary = "divvy up spectra from DTASelect files in a parsimonious way"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
