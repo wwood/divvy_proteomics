@@ -5,7 +5,7 @@ Takes a DTASelect CSV file, and parses the result so non-unique peptides get acc
 ## Install
 Get ruby somehow, if you don't already have it. Then, install this gem:
 ```
-gem install divvy_spectra
+$ gem install divvy_spectra
 ```
 
 ## Usage
