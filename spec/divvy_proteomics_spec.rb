@@ -115,4 +115,16 @@ describe script_under_test do
     ['E1D_raw_1__40591_2','8','0','8.0','0.12121212121212122','# 705 # 857 # 1 # ID=40591_2;partial=01;start_type=ATG;rbs_motif=None;rbs_spacer=None ',"\n"].join("\t")
     stdout.should eq(answer)
   end
+
+  it 'should include spectra shared between unresolvable proteins in calculations' do
+    test_file = "#{path_to_script} #{TEST_DATA_DIR}/new_format_some_all_shared_spectra.csv --trace error"
+    status, stdout, stderr = systemu test_file
+
+    stderr.should eq("")
+    answer = header+
+    ['E1D_raw_1__154435_1','0','41','0','0.0','# 3 # 176 # -1 # ID=154435_1;partial=10;start_type=ATG;rbs_motif=AGGAG;rbs_spacer=5-10bp ','aliaese'+"\n"].join("\t")+
+    ['aliaese','0','41','0','0.0','# 3 # 176 # -1 # ID=154435_1;partial=10;start_type=ATG;rbs_motif=AGGAG;rbs_spacer=5-10bp ','E1D_raw_1__154435_1'+"\n"].join("\t")+
+    ['E1D_raw_1__40591_2','8','0','8.0','0.16326530612244897','# 705 # 857 # 1 # ID=40591_2;partial=01;start_type=ATG;rbs_motif=None;rbs_spacer=None ',''+"\n"].join("\t")
+    stdout.should eq(answer)
+  end
 end

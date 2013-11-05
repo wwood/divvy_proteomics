@@ -1,0 +1,45 @@
+DTASelect v1.9
+/auto/gtl/ms/Abisko_Soils/Field_Sampling_Aug_2010/SurfDeep/Erio_Deep_Aug2010_27Jun_TR1/Frac1/analysis/tryp_edeep_082010_500bp_Wheat/sequest
+/auto/gtl/db/Abisko_Soils/edeep_082010_500bp_Wheat_cntm_psm
+SEQUEST v.27 in SQT format.
+ --DB -p 2 -r 1000
+true	Use criteria
+1.8	Minimum +1 XCorr
+2.5	Minimum +2 XCorr
+3.5	Minimum +3 XCorr
+0.08	Minimum DeltCN
+1	Minimum charge state
+3	Maximum charge state
+0.0	Minimum ion proportion
+1000	Maximum Sp rank
+-1.0	Minimum Sp score
+Include	Modified peptide inclusion
+Any	Tryptic status requirement
+true	Multiple, ambiguous IDs allowed
+Ignore	Peptide validation handling
+XCorr	Purge duplicate peptides by protein
+false	Include only loci with unique peptide
+false	Remove subset proteins
+Ignore	Locus validation handling
+0	Minimum modified peptides per locus
+1000	Minimum redundancy for low coverage loci
+2	Minimum peptides per locus
+
+Locus	Sequence Count	Spectrum Count	Sequence Coverage	Length	MolWt	pI	Validation Status	Descriptive Name
+Unique	FileName	XCorr	DeltCN	Obs_mono_m/z	Calc_mono_m/z	PPM	Delta_amu	TotalIntensity	SpRank	SpScore	IonProportion	Redundancy	Sequence	
+E1D_raw_1__154435_1	3	41	79.3%	58	6132	7.3	U	# 3 # 176 # -1 # ID=154435_1;partial=10;start_type=ATG;rbs_motif=AGGAG;rbs_spacer=5-10bp 
+aliaese	3	41	79.3%	58	6132	7.3	U	# 3 # 176 # -1 # ID=154435_1;partial=10;start_type=ATG;rbs_motif=AGGAG;rbs_spacer=5-10bp 
+	20120806_Erio_Deep_Aug2010_27Jun_TR1_04.22361.22361.3	5.8526	0.4034	2772.4479	2772.4445	1.2211	0.0034	6048.2	1	1349.0	40.0	30	-.MLSIQTNIAALSAQNALTTTNNNLQK.S	
+	20120806_Erio_Deep_Aug2010_27Jun_TR1_10.22784.22784.3	4.5965	0.4101	3275.6674	3275.6608	2.0124	0.0066	5944.2	1	884.7	28.4	7	-.MLSIQTNIAALSAQNALTTTNNNLQKSMER.L	
+	20120806_Erio_Deep_Aug2010_27Jun_TR1_03.06010.06010.2	4.5641	0.462	1594.7954	1594.7956	-0.1435	-0.0002	4981.9	1	1347.9	76.7	4	R.INHAADDAAGLAISEK.M	
+E1D_raw_1__40591_2	3	8	74.5%	51	5250	8.6	U	# 705 # 857 # 1 # ID=40591_2;partial=01;start_type=ATG;rbs_motif=None;rbs_spacer=None 
+*	20120806_Erio_Deep_Aug2010_27Jun_TR1_01.18475.18475.2	4.3739	0.5173	2140.0658	2140.0653	0.2192	0.0005	7636.1	1	1642.9	65.0	1	K.TSDVAGDGTTTATILAQSIYR.E	
+*	20120806_Erio_Deep_Aug2010_27Jun_TR1_02.21883.21883.2	3.4843	0.1996	2553.2977	2553.2928	1.9293	0.0049	6903.6	1	903.4	47.9	3	K.TSDVAGDGTTTATILAQSIYREGVK.A	
+*	20120806_Erio_Deep_Aug2010_27Jun_TR1_08.06194.06194.2	2.7604	0.1784	1326.7055	1326.7083	-2.1145	-0.0028	6041.5	1	860.0	66.7	4	K.AVAAGANPMELKR.G	
+	Proteins	Peptide IDs	Copies
+Unfiltered	318515	400116	506301
+Redundant	1575	3555	18759
+Nonredundant	1211	2557	12384
+
+Classification	Nonredundant Proteins	Redundant Proteins
+Unclassified	0	0
