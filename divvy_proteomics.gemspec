@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "divvy_proteomics"
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben J Woodcroft"]
-  s.date = "2013-04-13"
+  s.date = "2013-11-05"
   s.description = "divvy up spectra from DTASelect files in a somewhat parsimonious way"
   s.email = "donttrustben@gmail.com"
   s.executables = ["divvy_spectra"]
@@ -28,8 +28,10 @@ Gem::Specification.new do |s|
     "bin/divvy_spectra",
     "divvy_proteomics.gemspec",
     "lib/divvy_proteomics.rb",
+    "lib/dta_select_output.rb",
     "spec/data/merge_definition.csv",
     "spec/data/multiply_mapped_spectra.csv",
+    "spec/data/new_format.csv",
     "spec/data/single_protein.csv",
     "spec/data/single_protein_with_aliases.csv",
     "spec/data/three_proteins.csv",
@@ -41,11 +43,11 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/wwood/divvy_proteomics"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.24"
+  s.rubygems_version = "2.0.3"
   s.summary = "divvy up spectra from DTASelect files in a parsimonious way"
 
   if s.respond_to? :specification_version then
-    s.specification_version = 3
+    s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<bio-logger>, [">= 0"])
