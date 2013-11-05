@@ -83,8 +83,8 @@ describe script_under_test do
 
     stderr.should eq("")
     answer = header+
-    ['Mstor_v4.3.2:1344','0','188','94.0','0.5','Methanoflorens_stordalmirensis_v4.3.2_01361 Methyl-coenzyme M reductase I subunit gamma ','alias1'+"\n"].join("\t")+
-    ['alias1','0','188','94.0','0.5','alias1 Methyl-coenzyme M reductase I subunit gamma ','Mstor_v4.3.2:1344'+"\n"].join("\t")
+    ['Mstor_v4.3.2:1344','0','188','0','0.0','Methanoflorens_stordalmirensis_v4.3.2_01361 Methyl-coenzyme M reductase I subunit gamma ','alias1'+"\n"].join("\t")+
+    ['alias1','0','188','0','0.0','alias1 Methyl-coenzyme M reductase I subunit gamma ','Mstor_v4.3.2:1344'+"\n"].join("\t")
     stdout.should eq(answer), test_file
   end
 
@@ -102,5 +102,17 @@ describe script_under_test do
       ['eDeep20120820:eD1_1639_1','47','0','47.0','0.15460526315789475','chaperonin GroEL # pI:9.22 MW:10181 ',''+"\n"].join("\t")
       stdout.should eq(answer)
     end
+  end
+
+  it 'should work with the newer file format, wherever that came from' do
+    test_file = "#{path_to_script} #{TEST_DATA_DIR}/new_format.csv --trace error"
+    status, stdout, stderr = systemu test_file
+
+    stderr.should eq("")
+    answer = header+
+    ['E1D_raw_1__154436_3','17','41','58.0','0.8787878787878788','# 1956 # 2171 # 1 # ID=154436_3;partial=01;start_type=ATG;rbs_motif=AGGAG;rbs_spacer=5-10bp ','E1D_raw_1__154435_1'+"\n"].join("\t")+
+    ['E1D_raw_1__154435_1','0','41','0','0.0','# 3 # 176 # -1 # ID=154435_1;partial=10;start_type=ATG;rbs_motif=AGGAG;rbs_spacer=5-10bp ','E1D_raw_1__154436_3'+"\n"].join("\t")+
+    ['E1D_raw_1__40591_2','8','0','8.0','0.12121212121212122','# 705 # 857 # 1 # ID=40591_2;partial=01;start_type=ATG;rbs_motif=None;rbs_spacer=None ',"\n"].join("\t")
+    stdout.should eq(answer)
   end
 end
