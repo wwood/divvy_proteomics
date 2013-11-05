@@ -145,7 +145,7 @@ total_contaminating_peptides = hits.collect do |ident, peptide|
   end
 end
 total_contaminating_spectra = total_contaminating_peptides.reduce :+
-total_contaminating_spectra ||= []
+total_contaminating_spectra ||= 0
 log.info "Found #{total_contaminating_spectra} contaminating spectral counts"
 
 total_spectra = hits.collect{|ident, pep| pep.redundancy}.reduce(:+) - total_contaminating_spectra
