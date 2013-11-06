@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "divvy_proteomics"
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben J Woodcroft"]
-  s.date = "2013-11-05"
+  s.date = "2013-11-06"
   s.description = "divvy up spectra from DTASelect files in a somewhat parsimonious way"
   s.email = "donttrustben@gmail.com"
   s.executables = ["divvy_spectra"]
@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
     "spec/data/merge_definition.csv",
     "spec/data/multiply_mapped_spectra.csv",
     "spec/data/new_format.csv",
+    "spec/data/new_format_some_all_shared_spectra.csv",
     "spec/data/single_protein.csv",
     "spec/data/single_protein_with_aliases.csv",
     "spec/data/three_proteins.csv",
