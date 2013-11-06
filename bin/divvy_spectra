@@ -15,7 +15,7 @@ require 'dta_select_output'
 options = {
   :logger => 'stderr',
   :log_level => 'info',
-  :contaminant_prefix => /^CNTM:/,
+  :contaminant_regexes => [/^CNTM:/],
 }
 o = OptionParser.new do |opts|
   opts.banner = "
@@ -29,6 +29,10 @@ o = OptionParser.new do |opts|
   opts.on("--whitelist FILE_OF_PROTEINS_TO_REPORT", "Only report proteins that are in this whitelist, after divvying with everything") do |file|
     options[:whitelist_file] = file
   end
+  opts.on("--contaminant-regexes REGEXES", "Comma-separated list of regular expressions to apply to protein names. If the protein name matches then all spectra assigned to that protein are considered contaminants. [default: #{options[:contaminant_prefixes]}]") do |str|
+    options[:contaminant_regexes] = str.split(/,/).collect{|s| /#{s}/}
+  end
+
 
   # logger options
   opts.separator "\nVerbosity:\n\n"
@@ -42,8 +46,7 @@ if ARGV.length > 1
 end
 # Setup logging
 Bio::Log::CLI.logger(options[:logger]); Bio::Log::CLI.trace(options[:log_level]); log = Bio::Log::LoggerPlus.new(LOG_NAME); Bio::Log::CLI.configure(LOG_NAME)
-
-
+#$stderr.puts options[:contaminant_prefixes].inspect
 
 # Read in merges, if required
 mergers = {}
@@ -130,12 +133,22 @@ mergers.each do |secondary_id, primary_id|
   end #The other two cases do not require any intervention,
 end
 
+id_is_contaminating = lambda do |protein_id|
+  selected = false
+  options[:contaminant_regexes].each do |regex|
+    if protein_id.match(regex)
+      selected = true
+    end
+  end
+  selected
+end
+
 
 # Total spectra shouldn't count contaminants, but shared spectra should still be divvied up with
 # Annoying thing here is when contaminating proteins share spectra
 total_contaminating_peptides = hits.collect do |ident, peptide|
   num_contaminating_parents = peptide.parent_proteins.select do |prot|
-    prot.identifier.match(options[:contaminant_prefix])
+    id_is_contaminating.call prot.identifier
   end.length
 
   if num_contaminating_parents > 0
@@ -177,7 +190,7 @@ puts [
 ].join "\t"
 log.warn "No unique spectra found!" if total_spectra == 0
 proteins.each do |protein_id, protein|
-  next if protein_id.match(options[:contaminant_prefix]) #Don't print contaminants
+  next if id_is_contaminating.call(protein_id) #Don't print contaminants
 
   if options[:whitelist_file].nil? or whitelist.include?(protein_id) # If there's a whitelist, apply it now
     log.debug "Now printing protein #{protein_id}, which has #{protein.peptides.length} associated peptides"

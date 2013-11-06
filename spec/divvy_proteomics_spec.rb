@@ -88,6 +88,17 @@ describe script_under_test do
     stdout.should eq(answer), test_file
   end
 
+  it 'should handle arbitrary contaminant prefixes' do
+    test_file = "#{path_to_script} #{TEST_DATA_DIR}/single_protein_with_aliases.csv --trace error --contaminant-regexes alias"
+    status, stdout, stderr = systemu test_file
+
+    stderr.should eq("")
+    answer = header+
+    ['Mstor_v4.3.2:1344','0','188','0','NaN','Methanoflorens_stordalmirensis_v4.3.2_01361 Methyl-coenzyme M reductase I subunit gamma ','alias1'+"\n"].join("\t")
+    #['alias1','0','188','0','0.0','alias1 Methyl-coenzyme M reductase I subunit gamma ','Mstor_v4.3.2:1344'+"\n"].join("\t")
+    stdout.should eq(answer), test_file
+  end
+
   it 'should do a whitelist correctly' do
     Tempfile.open('test_divvy_spectra') do |tempfile|
       %w(eDeep20120820:eD1_8237_2 eDeep20120820:eD1_1639_1).each {|i| tempfile.puts i}
