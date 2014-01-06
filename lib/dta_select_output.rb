@@ -2,11 +2,6 @@
 
 
 module Bio::DTASelect
-  module Logging
-    def log
-      Bio::Log::LoggerPlus['divvy_spectra']
-    end
-  end
 
   class OutputFile
     def self.log
@@ -14,7 +9,7 @@ module Bio::DTASelect
     end
 
     class SelectedProtein
-      include Bio::DTASelect::Logging
+      include Bio::DivvyProteomics::Logging
 
       attr_accessor :identifier
 
@@ -70,7 +65,7 @@ module Bio::DTASelect
     end
 
     class Peptide
-      include Bio::DTASelect::Logging
+      include Bio::DivvyProteomics::Logging
 
       attr_accessor :identifier
 
@@ -98,7 +93,7 @@ module Bio::DTASelect
     end
 
     class Result
-      include Bio::DTASelect::Logging
+      include Bio::DivvyProteomics::Logging
 
       # hash of protein identifier to Protein object
       attr_accessor :protein_name_to_object
@@ -123,7 +118,7 @@ module Bio::DTASelect
       # Parse each line of the DTAselect file
       io.each_line do |line|
         splits = line.chomp.split("\t")
-        log.debug "Parsing line `#{line.chomp}'"
+        log.debug "Parsing line `#{line.chomp}'" if log.debug?
 
         if reading_header
           log.debug "reading header"
@@ -146,7 +141,7 @@ module Bio::DTASelect
           if !last_line_was_protein_name
             # Sometimes several proteins are given all in the one header line
             # start a new protein
-            log.debug "New protein now being parsed"
+            log.debug "New protein now being parsed" if log.debug?
             current_proteins = []
           end
 
@@ -174,13 +169,13 @@ module Bio::DTASelect
 
 
         elsif splits[1] == 'Proteins'
-          # Done processing, except for the bits down the bottom which aren't parsed (yet)
+          # Done processing, except for the bits down the bottom which aren't parsed (yet, at least)
           break
 
 
 
         else
-          log.debug "New spectra now being parsed"
+          log.debug "New spectra now being parsed" if log.debug?
           last_line_was_protein_name = false
 
           # Record a spectra
@@ -204,11 +199,11 @@ module Bio::DTASelect
             pep.parent_proteins.push current_protein
             current_protein.peptides.push pep
           end
-          log.debug "Parsed this peptide #{pep.inspect}"
+          log.debug "Parsed this peptide #{pep.inspect}" if log.debug?
         end
       end
 
-      log.debug "Proteins parsed: #{result.protein_name_to_object.inspect}"
+      log.debug "Proteins parsed: #{result.protein_name_to_object.inspect}" if log.debug?
       return result
     end
   end

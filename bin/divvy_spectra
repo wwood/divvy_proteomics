@@ -5,23 +5,24 @@ require 'bio-logger'
 require 'pp'
 require 'set'
 
-SCRIPT_NAME = File.basename(__FILE__); LOG_NAME = SCRIPT_NAME.gsub('.rb','')
+SCRIPT_NAME = File.basename(__FILE__); LOG_NAME = 'divvy_proteomics'
 
 rootpath = File.dirname(File.dirname(__FILE__))
 $: << File.join(rootpath,'lib')
-require 'dta_select_output'
+require 'divvy_proteomics'
 
 # Parse command line options into the options hash
 options = {
   :logger => 'stderr',
   :log_level => 'info',
   :contaminant_regexes => [/^CNTM:/],
+  :input_is_pep_xml => false,
 }
 o = OptionParser.new do |opts|
   opts.banner = "
-    Usage: #{SCRIPT_NAME} [options] <DTASelect_file>
+    Usage: #{SCRIPT_NAME} [options] <input_file>
 
-    Takes a tab separated file containing a (possibly modified) output from a DTAselect run, and use some algorithm to divy up the spectra that match multiple peptides.\n\n"
+    Takes a tab separated file containing a (possibly modified) output from a DTAselect run (or a pepXML file and add the flag --pep-xml), and use some algorithm to divy up the spectra that match multiple peptides.\n\n"
 
   opts.on("--merge-proteins FILE_OF_IDENTIFIERS", "Provide a space/tab separated file where the identifiers on each row should be treated as one protein") do |file|
     options[:merge_proteins_file] = file
@@ -31,6 +32,10 @@ o = OptionParser.new do |opts|
   end
   opts.on("--contaminant-regexes REGEXES", "Comma-separated list of regular expressions to apply to protein names. If the protein name matches then all spectra assigned to that protein are considered contaminants. [default: #{options[:contaminant_prefixes]}]") do |str|
     options[:contaminant_regexes] = str.split(/,/).collect{|s| /#{s}/}
+  end
+  opts.separator "\nOptional arguments:\n\n"
+  opts.on("--pep-xml", "Input file is pep XML, rather than a DTA select output file [default: #{options[:input_is_pep_xml]}]") do |arg|
+    options[:input_is_pep_xml] = true
   end
 
 
@@ -74,7 +79,12 @@ if options[:whitelist_file]
 end
 
 # Parse the csv file
-parsed = Bio::DTASelect::OutputFile.parse(ARGF)
+parsed = nil
+if options[:input_is_pep_xml]
+  parsed = Bio::PepXML.parse(ARGF)
+else
+  parsed = Bio::DTASelect::OutputFile.parse(ARGF)
+end
 
 # Hashes of identifiers to objects
 proteins = parsed.protein_name_to_object
