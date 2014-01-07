@@ -175,8 +175,6 @@ log.info "Found #{total_contaminating_spectra} contaminating spectral counts"
 total_spectra = hits.collect{|ident, pep| pep.redundancy}.reduce(:+) - total_contaminating_spectra
 log.info "Parsed in #{proteins.length} proteins and #{hits.length} peptides, and #{total_spectra.to_i} non-contaminating spectra"
 
-log.debug "Proteins parsed: #{proteins.inspect}"
-
 all_peptides = hits.values.uniq
 number_shared_peptides = all_peptides.select{|pep| pep.parent_proteins.length > 1}.length
 number_non_shared_peptides = all_peptides.select{|pep| pep.parent_proteins.length == 1}.length
