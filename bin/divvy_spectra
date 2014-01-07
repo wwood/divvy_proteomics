@@ -100,12 +100,13 @@ mergers.each do |secondary_id, primary_id|
 
     # Invalidate some things about the primary ID because they are no longer valid
     current_protein = proteins[primary_id]
-    current_protein.sequence_count = nil
-    current_protein.sequence_coverage = nil
-    current_protein.length = nil
-    current_protein.molwt = nil
-    current_protein.pi = nil
-    current_protein.validation_status = nil
+    # These variables are not used and are not present in pepXML files, so don't mess with them.
+    #    current_protein.sequence_count = nil
+    #    current_protein.sequence_coverage = nil
+    #    current_protein.length = nil
+    #    current_protein.molwt = nil
+    #    current_protein.pi = nil
+    #    current_protein.validation_status = nil
     # Keep the primary proteins' description, I reckon
 
     # When there is spectra that are in the secondary but not the primary, add them to the primary's repertoire.
@@ -182,11 +183,13 @@ number_non_shared_peptides = all_peptides.select{|pep| pep.parent_proteins.lengt
 total_peptides = number_shared_peptides+number_non_shared_peptides
 log.info "Found #{number_shared_peptides} (#{number_shared_peptides.to_f/total_peptides*100}%) shared peptides and #{number_non_shared_peptides} (#{number_non_shared_peptides.to_f/total_peptides*100}%) non-shared peptides"
 
-# Find non-starred peptides that occur only once in the file - maybe not possible given a correctly formatted file?
-non_starred_but_uniquely_identified_peptides = hits.values.select do |peptide|
-  peptide.dtaselect_attributes['Unique'] == nil and peptide.parent_proteins.length == 1
+unless options[:input_is_pep_xml]
+  # Find non-starred peptides that occur only once in the file - maybe not possible given a correctly formatted file?
+  non_starred_but_uniquely_identified_peptides = hits.values.select do |peptide|
+    peptide.dtaselect_attributes['Unique'] == nil and peptide.parent_proteins.length == 1
+  end
+  log.debug "Found #{non_starred_but_uniquely_identified_peptides.length} different peptides that weren't starred or 2'd but the identifier is only found one time."
 end
-log.debug "Found #{non_starred_but_uniquely_identified_peptides.length} different peptides that weren't starred or 2'd but the identifier is only found one time."
 
 # OK, finished parsing the file. Now output the score for each protein
 puts [

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<msms_pipeline_analysis date="2013-12-06T09:32:51.2000705-07:00" name="Tara_38sfc_FASP_8hr_OrbiVelosPro_Run1_030513_All_SEQUESTHT" summary_xml="" xmlns="http://regis-web.systemsbiology.net/pepXML">
+  <msms_run_summary base_name="D:\Proteome_Discoverer\RawFiles\FASP1\Tara_38sfc_FASP_8hr_OrbiVelosPro_Run1_030513\Tara_38sfc_FASP_8hr_OrbiVelosPro_Run1_030513_All_SEQUESTHT.msf" raw_data_type=".msf" raw_data=".msf" msManufacturer="" msModel="" msIonization="" msMassAnalyzer="" msDetector="">
+    <spectrum_query spectrum="Tara_38sfc_FASP_8hr_OrbiVelosPro_Run1_030513_02.9921.9921.2" start_scan="9921" end_scan="9921" retention_time_sec="41.732728333333334" activation_method="CID" precursor_intensity="61015.84375" precursor_neutral_mass="1246.6412829403125" assumed_charge="2" index="1">
+      <search_result search_id="1">
+        <search_hit hit_rank="1" peptide="IADQTIGTANSR" protein="" num_tot_proteins="3" num_matched_ions="0" calc_neutral_pep_mass="1246.6412829403125" massdiff="0" protein_descr="&gt;38SUR_2379_1524213_2&#x9;" protein_mw="43.185399974660044" calc_pI="5.63037109375">
+          <search_score name="XCorr" value="4.7916374206542969" />
+        </search_hit>
+      </search_result>
+    </spectrum_query>
+  </msms_run_summary>
+</msms_pipeline_analysis>

@@ -11,8 +11,6 @@ $:.unshift File.join(File.dirname(__FILE__),'..')
 script_under_test = File.basename(__FILE__).gsub(/^test_/,'')
 path_to_script = File.join(File.dirname(__FILE__),'..','bin','divvy_spectra')
 
-TEST_DATA_DIR = File.join(File.dirname(__FILE__),'data')
-
 describe script_under_test do
   let(:header){"ID\tUnique spectra\tNon-unique spectra\tEstimated total spectra\tNormalised spectral count\tDescription\tProteins sharing spectra\n"}
   it 'should do 1 protein hit' do

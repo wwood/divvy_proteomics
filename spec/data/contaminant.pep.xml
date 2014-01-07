@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<msms_pipeline_analysis date="2013-12-06T09:32:51.2000705-07:00" name="Tara_38sfc_FASP_8hr_OrbiVelosPro_Run1_030513_All_SEQUESTHT" summary_xml="" xmlns="http://regis-web.systemsbiology.net/pepXML">
+  <msms_run_summary base_name="D:\Proteome_Discoverer\RawFiles\FASP1\Tara_38sfc_FASP_8hr_OrbiVelosPro_Run1_030513\Tara_38sfc_FASP_8hr_OrbiVelosPro_Run1_030513_All_SEQUESTHT.msf" raw_data_type=".msf" raw_data=".msf" msManufacturer="" msModel="" msIonization="" msMassAnalyzer="" msDetector="">
+    <spectrum_query spectrum="Tara_38sfc_FASP_8hr_OrbiVelosPro_Run1_030513_03.1121.1121.2" start_scan="1121" end_scan="1121" retention_time_sec="5.4199816666666667" activation_method="CID" precursor_intensity="388495.5625" precursor_neutral_mass="1329.7252673153125" assumed_charge="2" index="221">
+      <search_result search_id="1">
+        <search_hit hit_rank="1" peptide="NLDLDSIIAEVK" protein="CNTM:cont_sp" num_tot_proteins="2" num_matched_ions="0" calc_neutral_pep_mass="1329.7252673153125" massdiff="0" protein_descr="P13647 K2C5_HUMAN Keratin, type II cytoskeletal 5 (Cytokeratin 5) (K5) (CK 5) (58 kDa cytokeratin) - Homo sapiens (Human). # pI:8.14 MW:62462" protein_mw="62.423064734660052" calc_pI="8.06005859375">
+          <alternative_protein protein="CNTM:cont_sp" protein_descr="P48668 K2CE_HUMAN Keratin, type II cytoskeletal 6E (Cytokeratin 6E) (CK 6E) (K6e keratin) - Homo sapiens (Human). # pI:8.14 MW:60092" protein_mw="60.05537958466001" />
+          <search_score name="XCorr" value="4.5027022361755371" />
+        </search_hit>
+      </search_result>
+    </spectrum_query>
+  </msms_run_summary>
+</msms_pipeline_analysis>
