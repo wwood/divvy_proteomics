@@ -13,20 +13,30 @@ $ gem install divvy_spectra
 $ divvy_spectra <DTASelectFile>
 ```
 Output is a table, with a row for each protein with a few columns, including number of unique spectra and the 
-estimated number of spectral counts after sorting out the non-uniqueness.
+estimated number of spectral counts after sorting out the non-uniqueness. Using the ```--pep-xml``` flag, PepXML files
+are can be used as input also:
+
+```
+$ divvy_spectra --pep-xml <PepXML_file>
+```
 
 Full usage information:
 ```
-$ divvy_spectra -h
 
-    Usage: divvy_spectra [options] <DTASelect_file>
+    Usage: divvy_spectra [options] <input_file>
 
-    Takes a tab separated file containing a (possibly modified) output from a DTAselect run, and use some algorithm to divy up the spectra that match multiple peptides.
+    Takes a tab separated file containing a (possibly modified) output from a DTAselect run (or a pepXML file and add the flag --pep-xml), and use some algorithm to divy up the spectra that match multiple peptides.
 
         --merge-proteins FILE_OF_IDENTIFIERS
                                      Provide a space/tab separated file where the identifiers on each row should be treated as one protein
         --whitelist FILE_OF_PROTEINS_TO_REPORT
                                      Only report proteins that are in this whitelist, after divvying with everything
+        --contaminant-regexes REGEXES
+                                     Comma-separated list of regular expressions to apply to protein names. If the protein name matches then all spectra assigned to that protein are considered contaminants. [default: ]
+
+Optional arguments:
+
+        --pep-xml                    Input file is pep XML, rather than a DTA select output file [default: false]
 
 Verbosity:
 
