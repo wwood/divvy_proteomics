@@ -80,11 +80,13 @@ end
 
 # Parse the csv file
 parsed = nil
+log.info "Parsing input.."
 if options[:input_is_pep_xml]
   parsed = Bio::PepXML.parse(ARGF)
 else
   parsed = Bio::DTASelect::OutputFile.parse(ARGF)
 end
+log.info "Finished parsing"
 
 # Hashes of identifiers to objects
 proteins = parsed.protein_name_to_object
