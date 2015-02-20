@@ -5,20 +5,29 @@ Takes a DTASelect CSV file, and parses the result so non-unique peptides get acc
 ## Install
 Get ruby somehow, if you don't already have it. Then, install this gem:
 ```
-$ gem install divvy_spectra
+$ gem install divvy_proteomics
+```
+Or if there is permissions problems e.g. on OSX,
+```
+$ sudo gem install divvy_proteomics
 ```
 
 ## Usage
+To test it work and to get a full listing of help
+```sh
+$ divvy_spectra -h
 ```
-$ divvy_spectra <DTASelectFile>
+
+To run on a PepXML file e.g.
+```
+$ divvy_spectra --pep-xml my.pep.xml
+```
+or a DTASelect file
+```
+$ divvy_spectra DTASelect_file
 ```
 Output is a table, with a row for each protein with a few columns, including number of unique spectra and the 
-estimated number of spectral counts after sorting out the non-uniqueness. Using the ```--pep-xml``` flag, PepXML files
-are can be used as input also:
-
-```
-$ divvy_spectra --pep-xml <PepXML_file>
-```
+estimated number of spectral counts after sorting out the non-uniqueness.
 
 Full usage information:
 ```
@@ -57,6 +66,6 @@ Verbosity:
 
 ## Copyright
 
-Copyright (c) 2013 Ben J Woodcroft. See LICENSE.txt for
+Copyright (c) 2013-2015 Ben J Woodcroft. See LICENSE.txt for
 further details.
 
